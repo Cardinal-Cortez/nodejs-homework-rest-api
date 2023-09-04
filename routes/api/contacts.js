@@ -6,13 +6,14 @@ const {
   createContact,
   deleteContact,
   updateContactData,
-} = require('../../controllers/contactControler');
-const { validateData } = require('../../validators/contactsValidator.js');
+} = require('../../controllers/contactControler'); 
+const { validateData } = require('../../validators/contactsValidator');
+
 
 router.get('/', getContacts);
 router.get('/:contactId', getContact);
 router.post('/', validateData, createContact);
 router.delete('/:contactId', deleteContact);
-router.put('/:contactId', updateContactData);
+router.put('/:contactId',validateData, updateContactData);
 
 module.exports = router;

@@ -9,8 +9,9 @@ const contactsSchema = Joi.object({
 module.exports = {
   validateData: (req, res, next) => {
     const { error } = contactsSchema.validate(req.body);
-    if (error) {
-      return res.status(400).send({ message: error.details[0].message });
+    if (typeof error !== "undefined") {
+      const missingField = error.details[0].path[0];
+      return res.status(400).send({ message: `Missing required '${missingField}' field` });
     }
     next();
   },

@@ -22,11 +22,7 @@ const getContact = async (req, res, next) => {
 
 const createContact = async (req, res, next) => {
   try {
-    const { error } = contactsSchema.validate(req.body);
-    if (error) {
-      const missingField = error.details[0].path[0];
-      return res.status(400).send({ message: `Missing required '${missingField}' field` });
-    }
+    contactsSchema.validateData;
     const data = await addContact(req.body);
     res.status(201).send(data);
   } catch (error) {
@@ -47,13 +43,9 @@ const deleteContact = async (req, res, next) => {
 const updateContactData = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const { error } = contactsSchema.validate(req.body);
-    if (!req.body) {
+    contactsSchema.validateData;
+    if (Object.keys(req.body).length === 0) {
       return res.status(400).send({ message: "missing fields" });
-    }
-    if (error) {
-      const missingField = error.details[0].path[0];
-      return res.status(400).send({ message: `Missing required '${missingField}' field` });
     }
     const data = await updateContact(contactId, req.body);
     res.status(200).send(data);
