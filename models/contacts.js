@@ -63,8 +63,10 @@ const updateContact = async (contactId, body) => {
 
   const index = data.findIndex((contact) => contact.id === contactId);
 
-  if (index === -1) return null;
-
+  if (index === -1) {
+    throw new Error('Contact not found');
+  }
+  
   data[index] = { ...body, id: contactId };
 
   await write(data);
