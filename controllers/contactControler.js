@@ -44,11 +44,7 @@ const deleteContact = async (req, res, next) => {
 const updateContactData = async (req, res, next) => {
   try {
     const { contactId } = req.params; 
-    // if (Object.keys(req.body).length === 0) {
-    //   return res.status(400).send({ message: "missing fields" });
-    // }
     contactsSchema.validateData;
-    
     const data = await updateContact(contactId, req.body);
     res.status(200).send(data);
   } catch (error) {
