@@ -1,4 +1,5 @@
 const { listContacts, getContactById, addContact, removeContact, updateContact } = require('../models/contacts.js');
+const { validateBody } = require('../validators/contactValidatorBodyjs');
 const contactsSchema = require('../validators/contactsValidator.js');
 
 const getContacts = async (req, res, next) => {
@@ -42,12 +43,12 @@ const deleteContact = async (req, res, next) => {
 
 const updateContactData = async (req, res, next) => {
   try {
-    const { contactId } = req.params;
+    const { contactId } = req.params; 
+    // if (Object.keys(req.body).length === 0) {
+    //   return res.status(400).send({ message: "missing fields" });
+    // }
     contactsSchema.validateData;
-    if (Object.keys(req.body).length === 0) {
-      return res.status(400).send({ message: "missing fields" });
-    }
-  
+    
     const data = await updateContact(contactId, req.body);
     res.status(200).send(data);
   } catch (error) {
