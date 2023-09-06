@@ -1,5 +1,4 @@
 const { listContacts, getContactById, addContact, removeContact, updateContact } = require('../models/contacts.js');
-const { validateBody } = require('../validators/contactValidatorBodyjs');
 const contactsSchema = require('../validators/contactsValidator.js');
 
 const getContacts = async (req, res, next) => {
